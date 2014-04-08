@@ -1,6 +1,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
-#include "STM32vldiscovery.h"
+#include "Serial.h"
 
 NVIC_InitTypeDef NVIC_InitStructure;
 
@@ -20,13 +20,21 @@ int main(void) {
 	/* Initialize LD3 and USER Button mounted on STM32VLDISCOVERY board*/
 	setSavePowerMode();
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC |
+			               RCC_APB1Periph_USART3 | RCC_APB2Periph_AFIO |
+			               RCC_APB2Periph_GPIOB , ENABLE);
 	initPintOutput(GPIOC, GPIO_Pin_8 | GPIO_Pin_9);
 	configureIRSensorInt();
+	openSerialComunication();
 
-	STM32vldiscovery_LEDOn(LED3);
+	char string[] = "hola mundo!\n";
+	char *aux = string;
+	//STM32vldiscovery_LEDOn(LED3);
+	while(1){
+		aux = string;
+		while(*aux)
+			serial_putc(*aux++);
 
-	while (1) {
 	}
 }
 

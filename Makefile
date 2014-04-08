@@ -29,19 +29,22 @@ ASRC=startup_stm32f10x_md_vl.s
 
 # Project Source Files
 SRC=main.c
+SRC+=Serial.c
 SRC+=stm32f10x_it.c
 
 #CMSIS
 SRC+=system_stm32f10x.c
 
 # Discovery Source Files
-SRC+=STM32vldiscovery.c
+#SRC+=STM32vldiscovery.c
 
 # Standard Peripheral Source Files
 SRC+=misc.c
 SRC+=stm32f10x_exti.c
 SRC+=stm32f10x_gpio.c
 SRC+=stm32f10x_rcc.c
+SRC+=stm32f10x_tim.c
+SRC+=stm32f10x_usart.c
 
 CDEFS=-DSTM32F10X_MD_VL
 CDEFS+=-DUSE_STDPERIPH_DRIVER
