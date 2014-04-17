@@ -140,11 +140,14 @@ void EXTI0_IRQHandler(void) {
 		// Disable IRSensor interrupt and enable Ultrasonic one.
 
 		NVIC_DisableIRQ(EXTI0_IRQn);
+		EXTI_ClearITPendingBit(EXTI_Line1);
 		NVIC_EnableIRQ(EXTI1_IRQn);
 
 		//TODO: Set timer to reenable IRSensor interrupt when its safe.
 		//TODO: Set timer to start counting ultrasonic delay
 		//TODO: Set timer to
+
+		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_SET);
 
 		EXTI_ClearITPendingBit(EXTI_Line0);
 	}
@@ -153,6 +156,12 @@ void EXTI0_IRQHandler(void) {
 void EXTI1_IRQHandler(void) {
 
 	if (EXTI_GetITStatus(EXTI_Line1) != RESET) {
+
+		NVIC_DisableIRQ(EXTI1_IRQn);
+		EXTI_ClearITPendingBit(EXTI_Line0);
+		NVIC_EnableIRQ(EXTI0_IRQn);
+
+		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_RESET);
 
 		EXTI_ClearITPendingBit(EXTI_Line1);
 	}
