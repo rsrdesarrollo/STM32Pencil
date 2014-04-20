@@ -14,6 +14,11 @@
 #define IR_EXTI_Line EXTI_Line0
 #define IR_EXTI_IRQn EXTI0_IRQn
 
+#define IR_GPIO_Pin GPIO_Pin_0
+#define IR_GPIOX GPIOA
+
+#define IR_PortSourceGPIOX GPIO_PortSourceGPIOA
+#define IR_PinSource GPIO_PinSource0
 
 void configureIRSensorInt();
 

@@ -36,14 +36,14 @@ void configureIRSensorInt() {
 
 	/* Configure IRSensor pin as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_InitStructure.GPIO_Pin = IR_GPIO_Pin;
+	GPIO_Init(IR_GPIOX, &GPIO_InitStructure);
 
 	/* Connect IRSensor EXTI Line to Button GPIO Pin */
-	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
+	GPIO_EXTILineConfig(IR_PortSourceGPIOX, IR_PinSource);
 
 	/* Configure IRSensor EXTI line */
-	EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+	EXTI_InitStructure.EXTI_Line = IR_EXTI_Line;
 	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 
 	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
@@ -52,7 +52,7 @@ void configureIRSensorInt() {
 	EXTI_Init(&EXTI_InitStructure);
 
 	/* Enable and set IRSensor EXTI Interrupt to the lowest priority */
-	NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = IR_EXTI_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;

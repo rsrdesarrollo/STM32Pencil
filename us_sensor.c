@@ -30,14 +30,14 @@ void configureUltrasonicSensorInt(){
 
 	/* Configure IRSensor pin as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_InitStructure.GPIO_Pin = US_GPIO_Pin;
+	GPIO_Init(US_GPIOX, &GPIO_InitStructure);
 
 	/* Connect IRSensor EXTI Line to Button GPIO Pin */
-	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+	GPIO_EXTILineConfig(US_PortSourceGPIOX, US_PinSource);
 
 	/* Configure IRSensor EXTI line */
-	EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+	EXTI_InitStructure.EXTI_Line = US_EXTI_Line;
 	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 
 	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
@@ -46,7 +46,7 @@ void configureUltrasonicSensorInt(){
 	EXTI_Init(&EXTI_InitStructure);
 
 	/* Enable and set IRSensor EXTI Interrupt to the lowest priority */
-	NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannel = US_EXTI_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;

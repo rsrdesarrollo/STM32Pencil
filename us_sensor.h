@@ -14,6 +14,12 @@
 #define US_EXTI_Line EXTI_Line1
 #define US_EXTI_IRQn EXTI1_IRQn
 
+#define US_GPIO_Pin GPIO_Pin_1
+#define US_GPIOX GPIOA
+
+#define US_PortSourceGPIOX GPIO_PortSourceGPIOA
+#define US_PinSource GPIO_PinSource1
+
 void configureUltrasonicSensorInt();
 
 #endif /* US_SENSOR_H_ */

@@ -14,5 +14,6 @@
 #define CLEAN_TIM_IRQHandler TIM2_IRQHandler
 #define CLEAN_TIM TIM2
 
+void configureCleanTimer();
 
 #endif /* TIMERS_H_ */

@@ -21,3 +21,8 @@ void CLEAN_TIM_IRQHandler(void) {
 		TIM_ClearITPendingBit(CLEAN_TIM, TIM_IT_Update);
 	}
 }
+
+
+void configureCleanTimer(){
+
+}
