@@ -12,14 +12,12 @@ int main(void) {
 
 	setSavePowerMode();
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC |
-			               RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO, ENABLE);
-
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 	initPintOutput(GPIOC, GPIO_Pin_8 | GPIO_Pin_9);
 
 	configureIRSensorInt();
 	configureUltrasonicSensorInt();
-	NVIC_DisableIRQ(EXTI1_IRQn);
+	configureCleanTimer();
 	openSerialComunication();
 
 

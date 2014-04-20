@@ -14,6 +14,8 @@
 #define US_EXTI_Line EXTI_Line1
 #define US_EXTI_IRQn EXTI1_IRQn
 
+#define US_RCC_Periph (RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1)
+
 #define US_GPIO_Pin GPIO_Pin_1
 #define US_GPIOX GPIOA
 

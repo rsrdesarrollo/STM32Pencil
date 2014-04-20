@@ -13,7 +13,11 @@
 
 #define CLEAN_TIM_IRQHandler TIM2_IRQHandler
 #define CLEAN_TIM TIM2
+#define CLEAN_RCC_Periph RCC_APB1Periph_TIM2
+
+#define CLEAN_IRQn TIM2_IRQn
 
 void configureCleanTimer();
+void restartCleanTimer();
 
 #endif /* TIMERS_H_ */

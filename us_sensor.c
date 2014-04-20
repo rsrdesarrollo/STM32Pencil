@@ -28,6 +28,8 @@ void configureUltrasonicSensorInt(){
 	EXTI_InitTypeDef EXTI_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
+	RCC_APB2PeriphClockCmd(US_RCC_Periph, ENABLE);
+
 	/* Configure IRSensor pin as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_InitStructure.GPIO_Pin = US_GPIO_Pin;
@@ -49,7 +51,7 @@ void configureUltrasonicSensorInt(){
 	NVIC_InitStructure.NVIC_IRQChannel = US_EXTI_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
 
 	NVIC_Init(&NVIC_InitStructure);
 }

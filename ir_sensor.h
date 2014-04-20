@@ -14,6 +14,8 @@
 #define IR_EXTI_Line EXTI_Line0
 #define IR_EXTI_IRQn EXTI0_IRQn
 
+#define IR_RCC_Periph (RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO)
+
 #define IR_GPIO_Pin GPIO_Pin_0
 #define IR_GPIOX GPIOA
 

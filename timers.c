@@ -15,6 +15,7 @@ void CLEAN_TIM_IRQHandler(void) {
 		NVIC_DisableIRQ(US_EXTI_IRQn);
 		EXTI_ClearITPendingBit(IR_EXTI_Line);
 		NVIC_EnableIRQ(IR_EXTI_IRQn);
+		NVIC_DisableIRQ(CLEAN_IRQn);
 
 		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_RESET);
 
@@ -22,7 +23,37 @@ void CLEAN_TIM_IRQHandler(void) {
 	}
 }
 
+void restartCleanTimer(){
+
+	TIM_SetCounter(CLEAN_TIM, 0);
+	NVIC_EnableIRQ(CLEAN_IRQn);
+}
+
+void _configureCleanTimerInterrupt(){
+	NVIC_InitTypeDef NVIC_InitStruct;
+
+	NVIC_InitStruct.NVIC_IRQChannel = CLEAN_IRQn;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 1;
+	NVIC_InitStruct.NVIC_IRQChannelCmd = DISABLE;
+
+	NVIC_Init(&NVIC_InitStruct);
+}
 
 void configureCleanTimer(){
+	RCC_APB1PeriphClockCmd(CLEAN_RCC_Periph, ENABLE);
+
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStruct;
+
+	TIM_TimeBaseStruct.TIM_Prescaler = 4000;
+	TIM_TimeBaseStruct.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseStruct.TIM_Period = 400;
+	TIM_TimeBaseStruct.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseStruct.TIM_RepetitionCounter = 0;
+
+	TIM_TimeBaseInit(CLEAN_TIM, &TIM_TimeBaseStruct);
+	TIM_Cmd(CLEAN_TIM, ENABLE);
+
+	_configureCleanTimerInterrupt();
 
 }

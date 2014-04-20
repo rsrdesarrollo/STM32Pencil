@@ -20,9 +20,11 @@ void IR_IRQHandler(void) {
 
 		//TODO: Set timer to reenable IRSensor interrupt when its safe.
 		//TODO: Set timer to start counting ultrasonic delay
-		//TODO: Set timer to
 
 		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_SET);
+
+		// Inicia Timer de limpieza.
+		restartCleanTimer();
 
 		EXTI_ClearITPendingBit(IR_EXTI_Line);
 	}
@@ -33,6 +35,8 @@ void configureIRSensorInt() {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	EXTI_InitTypeDef EXTI_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
+
+	RCC_APB2PeriphClockCmd(IR_RCC_Periph, ENABLE);
 
 	/* Configure IRSensor pin as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;

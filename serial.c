@@ -11,6 +11,8 @@ void openSerialComunication(){
 	GPIO_InitTypeDef GPIO_InitStruct;
 	GPIO_StructInit(&GPIO_InitStruct);
 
+	RCC_APB2PeriphClockCmd(SERIAL_RCC_Periph, ENABLE);
+
 	// Init USART3_Tx
 	GPIO_InitStruct.GPIO_Pin = SERIAL_Tx_Pin;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
