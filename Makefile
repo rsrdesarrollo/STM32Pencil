@@ -29,8 +29,10 @@ ASRC=startup_stm32f10x_md_vl.s
 
 # Project Source Files
 SRC=main.c
-SRC+=Serial.c
-SRC+=stm32f10x_it.c
+SRC+=serial.c
+SRC+=ir_sensor.c
+SRC+=us_sensor.c
+SRC+=timers.c
 
 #CMSIS
 SRC+=system_stm32f10x.c
