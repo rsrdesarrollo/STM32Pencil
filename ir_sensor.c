@@ -36,7 +36,7 @@ void configureIRSensorInt() {
 	EXTI_InitTypeDef EXTI_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
-	RCC_APB2PeriphClockCmd(IR_RCC_Periph, ENABLE);
+	RCC_APB2PeriphClockCmd(IR_RCC_APB2Periph, ENABLE);
 
 	/* Configure IRSensor pin as input floating */
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;

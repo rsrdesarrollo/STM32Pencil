@@ -12,7 +12,7 @@
 #define SERIAL_USART USART1
 #define SERIAL_BAUDRATE 9600
 
-#define SERIAL_RCC_Periph ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1 )
+#define SERIAL_RCC_APB2Periph ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1 )
 
 #define SERIAL_Tx_Pin GPIO_Pin_9
 #define SERIAL_Rx_Pin GPIO_Pin_10
