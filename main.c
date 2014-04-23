@@ -4,6 +4,7 @@
 #include "ir_sensor.h"
 #include "us_sensor.h"
 #include "timers.h"
+#include "common.h"
 
 void setSavePowerMode();
 void initPintOutput(GPIO_TypeDef * GPIOX, uint16_t pin);
@@ -18,18 +19,44 @@ int main(void) {
 	configureIRSensorInt();
 	configureUltrasonicSensorInt();
 	configureCleanTimer();
+	configureCountTimer();
 	openSerialComunication();
 
 
+	/*
 	char string[] = "hola mundo!\n";
 	char *aux = string;
-	//STM32vldiscovery_LEDOn(LED3);
 	while(1){
 		aux = string;
 		while(*aux)
 			serial_putc(*aux++);
 
 	}
+	/*/
+	int failed = 0;
+	while(1){
+		if(DATA_READY){
+			DATA_READY = 0;
+			uint16_t data = DATA;
+			stUInt16_t *sdata = (stUInt16_t *)&data;
+
+			if((data >= 103) && (data <= 108)){
+				if(!failed){
+					GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_RESET);
+				}else
+					failed--;
+			}else{
+				failed = 30;
+				GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_SET);
+			}
+
+			serial_putc(sdata->high);
+			serial_putc(sdata->low);
+		}
+	}
+
+	/**/
+
 }
 
 void setSavePowerMode() {

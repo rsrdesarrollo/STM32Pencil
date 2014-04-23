@@ -7,24 +7,24 @@
 #include "ir_sensor.h"
 #include "us_sensor.h"
 #include "timers.h"
+#include "common.h"
 
 void IR_IRQHandler(void) {
 
 	if (EXTI_GetITStatus(IR_EXTI_Line) != RESET) {
 
-		// Disable IRSensor interrupt and enable Ultrasonic one.
+		// Inicia Timer de limpieza y el contador.
+		restartCountTimer();
+		restartCleanTimer();
 
+		DATA = 0xffff;
+
+		// Disable IRSensor interrupt and enable Ultrasonic one.
 		NVIC_DisableIRQ(IR_EXTI_IRQn);
 		EXTI_ClearITPendingBit(US_EXTI_Line);
 		NVIC_EnableIRQ(US_EXTI_IRQn);
 
-		//TODO: Set timer to reenable IRSensor interrupt when its safe.
-		//TODO: Set timer to start counting ultrasonic delay
-
 		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_SET);
-
-		// Inicia Timer de limpieza.
-		restartCleanTimer();
 
 		EXTI_ClearITPendingBit(IR_EXTI_Line);
 	}

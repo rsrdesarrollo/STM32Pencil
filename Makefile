@@ -33,6 +33,7 @@ SRC+=serial.c
 SRC+=ir_sensor.c
 SRC+=us_sensor.c
 SRC+=timers.c
+SRC+=common.c
 
 #CMSIS
 SRC+=system_stm32f10x.c
@@ -52,7 +53,7 @@ CDEFS=-DSTM32F10X_MD_VL
 CDEFS+=-DUSE_STDPERIPH_DRIVER
 
 MCUFLAGS=-mcpu=cortex-m3 -mthumb
-COMMONFLAGS=-O$(OPTLVL) -g -Wall -Werror 
+COMMONFLAGS=-O$(OPTLVL) -g -Wall -Werror  -Wno-error=comment
 CFLAGS=$(COMMONFLAGS) $(MCUFLAGS) $(INCLUDE) $(CDEFS)
 
 LDLIBS=

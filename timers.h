@@ -11,13 +11,20 @@
 #include "stm32f10x.h"
 
 
-#define CLEAN_TIM_IRQHandler TIM3_IRQHandler
-#define CLEAN_TIM TIM3
-#define CLEAN_RCC_APB1Periph (RCC_APB1Periph_TIM3)
+#define CLEAN_TIM_IRQHandler TIM2_IRQHandler
+#define CLEAN_TIM TIM2
+#define CLEAN_RCC_APB1Periph (RCC_APB1Periph_TIM2)
 
-#define CLEAN_IRQn TIM3_IRQn
+#define CLEAN_IRQn TIM2_IRQn
+
+#define COUNT_TIM TIM3
+#define COUNT_RCC_APB1Periph (RCC_APB1Periph_TIM3)
+
 
 void configureCleanTimer();
-void restartCleanTimer();
+void configureCountTimer();
+
+__INLINE void restartCleanTimer();
+__INLINE void restartCountTimer();
 
 #endif /* TIMERS_H_ */

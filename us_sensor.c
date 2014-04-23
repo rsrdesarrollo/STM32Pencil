@@ -7,16 +7,15 @@
 #include "us_sensor.h"
 #include "ir_sensor.h"
 #include "timers.h"
+#include "common.h"
 
 void ULTRASONIC_IRQHandler(void) {
 
 	if (EXTI_GetITStatus(US_EXTI_Line) != RESET) {
 
-		NVIC_DisableIRQ(US_EXTI_IRQn);
-		EXTI_ClearITPendingBit(IR_EXTI_Line);
-		NVIC_EnableIRQ(IR_EXTI_IRQn);
+		DATA = TIM_GetCounter(COUNT_TIM);
 
-		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_RESET);
+		NVIC_DisableIRQ(US_EXTI_IRQn);
 
 		EXTI_ClearITPendingBit(US_EXTI_Line);
 	}
