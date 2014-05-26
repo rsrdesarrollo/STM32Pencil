@@ -1,0 +1,197 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+EELAYER 27 0
+EELAYER END
+$Descr User 5906 5906
+encoding utf-8
+Sheet 1 1
+Title "Pencil for stm32Pencil project"
+Date "20 may 2014"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L LM555N C2
+U 1 1 537A2C27
+P 4250 2500
+F 0 "C2" H 4250 2600 70  0000 C CNN
+F 1 "LM555N" H 4250 2400 70  0000 C CNN
+F 2 "" H 4250 2500 60  0000 C CNN
+F 3 "" H 4250 2500 60  0000 C CNN
+F 4 "40KHz" H 4250 2500 60  0000 C CNN "Frec"
+	1    4250 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 537A2C80
+P 1150 1750
+F 0 "#PWR?" H 1150 1840 20  0001 C CNN
+F 1 "+5V" H 1150 1840 30  0000 C CNN
+F 2 "" H 1150 1750 60  0000 C CNN
+F 3 "" H 1150 1750 60  0000 C CNN
+	1    1150 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 1750 1150 2800
+Wire Wire Line
+	1150 2800 1400 2800
+$Comp
+L GND #PWR?
+U 1 1 537A2CC5
+P 1600 3800
+F 0 "#PWR?" H 1600 3800 30  0001 C CNN
+F 1 "GND" H 1600 3730 30  0001 C CNN
+F 2 "" H 1600 3800 60  0000 C CNN
+F 3 "" H 1600 3800 60  0000 C CNN
+	1    1600 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 537A2CE3
+P 1250 3100
+F 0 "C2" H 1250 3200 40  0000 L CNN
+F 1 "10nF" H 1256 3015 40  0000 L CNN
+F 2 "~" H 1288 2950 30  0000 C CNN
+F 3 "~" H 1250 3100 60  0000 C CNN
+	1    1250 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 2550 1250 2550
+Wire Wire Line
+	1250 3300 2100 3300
+$Comp
+L DIODE D1
+U 1 1 537A2D3A
+P 3300 3300
+F 0 "D1" H 3300 3400 40  0000 C CNN
+F 1 "DIODE" H 3300 3200 40  0001 C CNN
+F 2 "~" H 3300 3300 60  0000 C CNN
+F 3 "~" H 3300 3300 60  0000 C CNN
+	1    3300 3300
+	0    -1   1    0   
+$EndComp
+$Comp
+L R R1
+U 1 1 537A2D49
+P 3000 3300
+F 0 "R1" V 3080 3300 40  0000 C CNN
+F 1 "8K" V 3007 3301 40  0000 C CNN
+F 2 "~" V 2930 3300 30  0000 C CNN
+F 3 "~" H 3000 3300 30  0000 C CNN
+	1    3000 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 3050 3300 3050
+Wire Wire Line
+	3300 3050 3300 3100
+Wire Wire Line
+	3000 3550 3300 3550
+Wire Wire Line
+	3300 3550 3300 3500
+Wire Wire Line
+	2800 2500 3150 2500
+Wire Wire Line
+	3150 1850 3150 3050
+Connection ~ 3150 3050
+Wire Wire Line
+	3150 3650 3150 3550
+Wire Wire Line
+	950  3650 3150 3650
+Wire Wire Line
+	2800 3650 2800 2700
+Connection ~ 3150 3550
+Wire Wire Line
+	2800 2300 3300 2300
+Wire Wire Line
+	3300 2300 3300 2800
+Wire Wire Line
+	3300 2800 3550 2800
+$Comp
+L CP1 C1
+U 1 1 537A2E58
+P 2300 3300
+F 0 "C1" H 2350 3400 50  0000 L CNN
+F 1 "4.7uF" H 2350 3200 50  0000 L CNN
+F 2 "~" H 2300 3300 60  0000 C CNN
+F 3 "~" H 2300 3300 60  0000 C CNN
+	1    2300 3300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2500 3300 2800 3300
+Connection ~ 1600 3300
+$Comp
+L R R2
+U 1 1 537A2EB3
+P 2050 1850
+F 0 "R2" V 2130 1850 40  0000 C CNN
+F 1 "2K" V 2057 1851 40  0000 C CNN
+F 2 "~" V 1980 1850 30  0000 C CNN
+F 3 "~" H 2050 1850 30  0000 C CNN
+	1    2050 1850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1800 1850 1150 1850
+Connection ~ 1150 1850
+Wire Wire Line
+	2300 1850 3150 1850
+Connection ~ 3150 2500
+Wire Wire Line
+	1400 2300 950  2300
+Wire Wire Line
+	950  2300 950  3650
+Connection ~ 2800 3650
+$Comp
+L LM555N C1
+U 1 1 537A2A28
+P 2100 2500
+F 0 "C1" H 2100 2600 70  0000 C CNN
+F 1 "LM555N" H 2100 2400 70  0000 C CNN
+F 2 "" H 2100 2500 60  0000 C CNN
+F 3 "" H 2100 2500 60  0000 C CNN
+F 4 "30Hz" H 2100 2500 60  0000 C CNN "Frec"
+	1    2100 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 2550 1250 2900
+$EndSCHEMATC
