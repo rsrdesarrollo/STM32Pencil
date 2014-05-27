@@ -39,8 +39,10 @@ void configureIRSensorInt() {
 	RCC_APB2PeriphClockCmd(IR_RCC_APB2Periph, ENABLE);
 
 	/* Configure IRSensor pin as input floating */
+	GPIO_StructInit(&GPIO_InitStructure);
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_InitStructure.GPIO_Pin = IR_GPIO_Pin;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(IR_GPIOX, &GPIO_InitStructure);
 
 	/* Connect IRSensor EXTI Line to Button GPIO Pin */

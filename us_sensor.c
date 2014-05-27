@@ -30,8 +30,10 @@ void configureUltrasonicSensorInt(){
 	RCC_APB2PeriphClockCmd(US_RCC_APB2Periph, ENABLE);
 
 	/* Configure IRSensor pin as input floating */
+	GPIO_StructInit(&GPIO_InitStructure);
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_InitStructure.GPIO_Pin = US_GPIO_Pin;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(US_GPIOX, &GPIO_InitStructure);
 
 	/* Connect IRSensor EXTI Line to Button GPIO Pin */
@@ -41,7 +43,7 @@ void configureUltrasonicSensorInt(){
 	EXTI_InitStructure.EXTI_Line = US_EXTI_Line;
 	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 
-	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
 
 	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStructure);

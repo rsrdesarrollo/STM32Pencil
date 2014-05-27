@@ -40,7 +40,7 @@ int main(void) {
 			uint16_t data = DATA;
 			stUInt16_t *sdata = (stUInt16_t *)&data;
 
-			if((data >= 103) && (data <= 108)){
+			if(data != 0xffff){
 				if(!failed){
 					GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_RESET);
 				}else

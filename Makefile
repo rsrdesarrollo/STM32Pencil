@@ -1,6 +1,6 @@
 
 TARGET:=Pencil
-TOOLCHAIN_PATH:=/opt/arm/gcc-arm-none-eabi-4_8-2014q1/bin
+TOOLCHAIN_PATH:=/opt/arm-toolchain/gcc-arm-none-eabi-4_8-2014q1/bin
 TOOLCHAIN_PREFIX:=arm-none-eabi
 OPTLVL:=3 # Optimization level, can be [0, 1, 2, 3, s].
 
