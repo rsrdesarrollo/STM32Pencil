@@ -22,17 +22,6 @@ int main(void) {
 	configureCountTimer();
 	openSerialComunication();
 
-
-	/*
-	char string[] = "hola mundo!\n";
-	char *aux = string;
-	while(1){
-		aux = string;
-		while(*aux)
-			serial_putc(*aux++);
-
-	}
-	/*/
 	int failed = 0;
 	while(1){
 		if(DATA_READY){

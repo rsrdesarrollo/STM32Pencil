@@ -9,10 +9,14 @@
 #include "timers.h"
 #include "common.h"
 
+/**
+ * Ultrasonic Interruption handler
+ */
 void ULTRASONIC_IRQHandler(void) {
 
 	if (EXTI_GetITStatus(US_EXTI_Line) != RESET) {
 
+		// Set measured data to counter timer value.
 		DATA = TIM_GetCounter(COUNT_TIM);
 
 		NVIC_DisableIRQ(US_EXTI_IRQn);

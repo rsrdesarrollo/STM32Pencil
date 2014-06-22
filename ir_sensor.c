@@ -9,21 +9,25 @@
 #include "timers.h"
 #include "common.h"
 
+/**
+ * Infrared Interruption handler
+ */
 void IR_IRQHandler(void) {
 
 	if (EXTI_GetITStatus(IR_EXTI_Line) != RESET) {
 
-		// Inicia Timer de limpieza y el contador.
+		// Initialize count and clean timers .
 		restartCountTimer();
 		restartCleanTimer();
 
-		DATA = 0xffff;
+		DATA = 0xffff;	// Data initialized to "out of range"
 
 		// Disable IRSensor interrupt and enable Ultrasonic one.
 		NVIC_DisableIRQ(IR_EXTI_IRQn);
 		EXTI_ClearITPendingBit(US_EXTI_Line);
 		NVIC_EnableIRQ(US_EXTI_IRQn);
 
+		// On IR received turn on Green led
 		GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_SET);
 
 		EXTI_ClearITPendingBit(IR_EXTI_Line);

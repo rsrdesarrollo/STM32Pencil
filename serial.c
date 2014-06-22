@@ -35,6 +35,9 @@ void openSerialComunication(){
 	USART_Cmd(SERIAL_USART, ENABLE);
 }
 
+/**
+ * Write char into serial port
+ */
 void serial_putc(int c){
 	while (USART_GetFlagStatus(SERIAL_USART, USART_FLAG_TXE) == RESET);
 	SERIAL_USART->DR = (c & 0xff);
